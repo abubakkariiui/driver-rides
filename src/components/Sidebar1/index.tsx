@@ -77,6 +77,7 @@ export default function Sidebar1({ ...props }: Props) {
               Rides
             </MenuItem>
             <MenuItem
+              component={<Link to="/drivers" />}
               icon={
                 <Img
                   src="images/img_healthicons_truck_driver.svg"
@@ -88,6 +89,7 @@ export default function Sidebar1({ ...props }: Props) {
               Drivers
             </MenuItem>
             <MenuItem
+              component={<Link to="/mypayments" />}
               icon={
                 <Img
                   src="images/img_dashicons_money_alt.svg"
@@ -99,6 +101,7 @@ export default function Sidebar1({ ...props }: Props) {
               My Payments
             </MenuItem>
             <MenuItem
+              component={<Link to="/driverpayments" />}
               icon={
                 <Img
                   src="images/img_dashicons_money_alt.svg"
@@ -110,6 +113,7 @@ export default function Sidebar1({ ...props }: Props) {
               Drivers Payments
             </MenuItem>
             <MenuItem
+              component={<Link to="/moderators" />}
               icon={
                 <Img
                   src="images/img_vuesax_linear_profile_2user.svg"
@@ -121,6 +125,7 @@ export default function Sidebar1({ ...props }: Props) {
               Moderators
             </MenuItem>
             <MenuItem
+              component={<Link to="/carclasses" />}
               icon={
                 <Img
                   src="images/img_car.svg"

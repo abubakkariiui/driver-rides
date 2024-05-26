@@ -19,24 +19,6 @@ const tableData = [
     rowpickuplocati: "21 Hamidulla Oripov ko\\'chasi, Тошкент, Oʻzbekiston",
     amountHeader: "300 000 SUM",
   },
-  {
-    userColumn: "Sierra Ferguson",
-    bookingTimeColumn: "04.12.2021 20:23\t",
-    rowpickuplocati: "76 Фарғона Йўли, Тошкент, Oʻzbekiston",
-    amountHeader: "5 300 000 SUM",
-  },
-  {
-    userColumn: "Sierra Ferguson",
-    bookingTimeColumn: "17.11.2021 12:19\t",
-    rowpickuplocati: "13 Kumarik ko\\'chasi, Tashkent 100167, Oʻzbekiston",
-    amountHeader: "500 300 000 SUM",
-  },
-  {
-    userColumn: "Sierra Ferguson",
-    bookingTimeColumn: "04.12.2021 20:30\t",
-    rowpickuplocati: "1 Kuyi Talarik ko\\'chasi, Тошкент 100091, Oʻzbekiston",
-    amountHeader: "50 300 000 SUM",
-  },
 ];
 
 type TableRowType = {
@@ -47,7 +29,133 @@ type TableRowType = {
   amountHeader: string;
 };
 
+type Payment = {
+  orderNo: string;
+  customer: string;
+  driver: string;
+  date: string;
+  amount: string;
+  commission: string;
+  refundStatus: string;
+  paymentStatus: string;
+};
+
 export default function DashboardPage() {
+  const data: Payment[] = [
+    {
+      orderNo: "OR1289879S3",
+      customer: "Sierra Ferguson",
+      driver: "Sierra Ferguson",
+      date: "April 24, 2024",
+      amount: "100 USD",
+      commission: "20 USD",
+      refundStatus: "Nill",
+      paymentStatus: "Payed",
+    },
+    // Add more rows as needed
+  ];
+
+  const columnHelper = createColumnHelper<Payment>();
+
+  const columns = React.useMemo(
+    () => [
+      columnHelper.accessor("orderNo", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Order No</Heading>,
+        meta: { width: "120px" },
+      }),
+      columnHelper.accessor("customer", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Customer</Heading>,
+        meta: { width: "150px" },
+      }),
+      columnHelper.accessor("driver", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Driver</Heading>,
+        meta: { width: "150px" },
+      }),
+      columnHelper.accessor("date", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Date</Heading>,
+        meta: { width: "130px" },
+      }),
+      columnHelper.accessor("amount", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Amount</Heading>,
+        meta: { width: "100px" },
+      }),
+      columnHelper.accessor("commission", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Commission</Heading>,
+        meta: { width: "110px" },
+      }),
+      columnHelper.accessor("refundStatus", {
+        cell: (info) => (
+          <Text as="p" className="text-center">
+            {info.getValue()}
+          </Text>
+        ),
+        header: () => <Heading>Refund Status</Heading>,
+        meta: { width: "150px" },
+      }),
+      columnHelper.accessor("paymentStatus", {
+        cell: (info) => (
+          <div className="text-center">
+            <Text
+              as="p"
+              className={info.getValue() === "Payed" ? "text-green-500" : ""}
+            >
+              {info.getValue()}
+            </Text>
+          </div>
+        ),
+        header: () => <Heading>Payment Status</Heading>,
+        meta: { width: "150px" },
+      }),
+      columnHelper.display({
+        id: "action",
+        cell: () => (
+          <div className="text-center">
+            <button>
+              <img src="images/img_eye.svg" alt="view details icon" />
+            </button>
+          </div>
+        ),
+        header: () => (
+          <Heading as="p" className="py-3.5 pl-[19px] md:p-5">
+            Action
+          </Heading>
+        ),
+        meta: { width: "100px" },
+      }),
+    ],
+    []
+  );
+
   const tableColumns = React.useMemo(() => {
     const tableColumnHelper = createColumnHelper<TableRowType>();
     return [
@@ -350,123 +458,17 @@ export default function DashboardPage() {
           <Heading size="xl" as="h2" className="mt-5 !text-blue_gray-800_01">
             Payments
           </Heading>
-          <div className="ml-2 mt-4 w-[95%] md:ml-0 md:w-full">
-            <div className="flex items-start justify-center pl-3.5 pr-[15px] pt-[15px] md:flex-col">
-              <div className="relative z-[1] flex flex-1 items-center justify-between gap-5 md:flex-col md:self-stretch">
-                <div className="flex w-[10%] items-center justify-between gap-5 self-start md:w-full">
-                  <div className="h-[13px] w-[12px] self-start rounded-sm border border-solid border-blue_gray-100 bg-white-A700" />
-                  <Heading as="h2">Order No</Heading>
-                </div>
-                <Heading as="h3" className="self-start">
-                  Customer
-                </Heading>
-                <Heading as="h4">Driver</Heading>
-                <Heading as="h5" className="self-start capitalize">
-                  Date
-                </Heading>
-                <div className="flex flex-wrap">
-                  <Heading as="h6" className="self-start capitalize">
-                    Amount
-                  </Heading>
-                  <Heading as="p" className="ml-[51px] self-start capitalize">
-                    Commision
-                  </Heading>
-                  <Heading as="p" className="ml-[29px] self-start capitalize">
-                    Refund Status
-                  </Heading>
-                  <Heading as="p" className="ml-6 self-end capitalize">
-                    Payment Status
-                  </Heading>
-                  <Heading as="p" className="ml-[45px] self-start capitalize">
-                    Action
-                  </Heading>
-                </div>
-              </div>
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative ml-[-39px] h-[31px] md:ml-0 md:w-full"
-              />
-            </div>
-            <div className="flex flex-col items-end px-[39px] sm:px-5">
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="h-[31px]"
-              />
-              <div className="relative mt-[-193px] flex w-[86%] flex-col gap-3 self-start pt-[145px] md:w-full md:pt-5">
-                {[...Array(8)].map((d, index) => (
-                  <div
-                    key={"listor1289879St" + index}
-                    className="flex items-center md:flex-col"
-                  >
-                    <div className="flex flex-wrap">
-                      <Text as="p" className="self-start">
-                        OR1289879S3
-                      </Text>
-                      <Text as="p" className="ml-[54px] self-end">
-                        Sierra Ferguson
-                      </Text>
-                      <Text as="p" className="ml-[21px] self-end">
-                        Sierra Ferguson
-                      </Text>
-                      <Text as="p" className="ml-[30px] self-end">
-                        April 24, 2024
-                      </Text>
-                      <Text as="p" className="ml-[52px] self-start">
-                        100 USD
-                      </Text>
-                    </div>
-                    <Text as="p" className="ml-[72px] self-start md:ml-0">
-                      20 USD
-                    </Text>
-                    <Text
-                      as="p"
-                      className="ml-[84px] h-[15px] w-[14px] self-start md:ml-0"
-                    >
-                      Nill
-                    </Text>
-                    <Text
-                      as="p"
-                      className="ml-24 self-end !text-green-500 md:ml-0"
-                    >
-                      Payed
-                    </Text>
-                  </div>
-                ))}
-              </div>
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative mt-[-1px] h-[31px]"
-              />
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative mt-[-1px] h-[31px]"
-              />
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative mt-[-1px] h-[31px]"
-              />
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative mt-[-1px] h-[31px]"
-              />
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative mt-[-1px] h-[31px]"
-              />
-              <Img
-                src="images/img_eye.svg"
-                alt="view details icon"
-                className="relative mt-[-1px] h-[31px]"
-              />
-            </div>
-          </div>
+          <ReactTable
+            size="sm"
+            bodyProps={{ className: "" }}
+            headerProps={{
+              className:
+                "border-blue_gray-50 border border-solid bg-gray-50_01 md:flex-col rounded-lg",
+            }}
+            rowDataProps={{ className: "md:flex-col" }}
+            columns={columns}
+            data={data}
+          />
         </div>
       </div>
     </>

@@ -76,11 +76,7 @@ export default function RidesPage() {
         ),
         header: (info) => (
           <div className="flex py-[17px]">
-            <CheckBox
-              name="Checkbox"
-              label=""
-              id="Checkbox5"
-            />
+            <CheckBox name="Checkbox" label="" id="Checkbox5" />
           </div>
         ),
         meta: { width: "20px" },
@@ -113,12 +109,19 @@ export default function RidesPage() {
       table1ColumnHelper.accessor("carTypeText", {
         cell: (info) => (
           <div className="flex items-center gap-2.5">
-            <Img src="images/img_2014_mercedes_b.png" alt="car image" className="h-[25px] self-end object-cover" />
+            <Img
+              src="images/img_2014_mercedes_b.png"
+              alt="car image"
+              className="h-[25px] self-end object-cover"
+            />
             <div className="flex flex-col items-start">
               <Text size="xl" as="p">
                 {info?.getValue?.()}
               </Text>
-              <Text as="p" className="relative mt-[-2px] tracking-[0.10px] !text-blue_gray-300_01">
+              <Text
+                as="p"
+                className="relative mt-[-2px] tracking-[0.10px] !text-blue_gray-300_01"
+              >
                 MCYZ 12903
               </Text>
             </div>
@@ -169,7 +172,7 @@ export default function RidesPage() {
         ),
         header: (info) => (
           <Heading as="p" className="py-3.5 pl-1.5 capitalize">
-            Desination location
+            Destination location
           </Heading>
         ),
         meta: { width: "159px" },
@@ -214,7 +217,11 @@ export default function RidesPage() {
           <div className="mt-1.5 flex w-[94%] justify-center overflow-auto md:w-full">
             <div className="flex w-full items-center justify-between gap-5 md:flex-col">
               <div className="flex w-[38%] justify-center self-start md:w-full sm:flex-col">
-                <Heading size="md" as="h1" className="relative z-[1] !text-black-900">
+                <Heading
+                  size="md"
+                  as="h1"
+                  className="relative z-[1] !text-black-900"
+                >
                   In progress (1)
                 </Heading>
                 <Img
@@ -222,7 +229,11 @@ export default function RidesPage() {
                   alt="right arrow icon"
                   className="relative ml-[-2px] h-[24px] w-[24px] self-start sm:ml-0 sm:w-full"
                 />
-                <Heading size="md" as="h2" className="relative z-[2] ml-2 !text-black-900 sm:ml-0">
+                <Heading
+                  size="md"
+                  as="h2"
+                  className="relative z-[2] ml-2 !text-black-900 sm:ml-0"
+                >
                   Completed (70)
                 </Heading>
                 <Img
@@ -247,10 +258,18 @@ export default function RidesPage() {
               </div>
               <div className="flex w-[16%] items-center justify-between gap-5 md:w-full">
                 <div className="flex items-center">
-                  <Heading size="md" as="h4" className="self-start !text-red-A100">
+                  <Heading
+                    size="md"
+                    as="h4"
+                    className="self-start !text-red-A100"
+                  >
                     Action
                   </Heading>
-                  <Img src="images/img_eye_red_a100.svg" alt="eye icon" className="h-[27px]" />
+                  <Img
+                    src="images/img_eye_red_a100.svg"
+                    alt="eye icon"
+                    className="h-[27px]"
+                  />
                 </div>
                 <Img
                   src="images/img_arrow_right_black_900.svg"
@@ -265,7 +284,10 @@ export default function RidesPage() {
             <ReactTable
               size="xs"
               bodyProps={{ className: "" }}
-              headerProps={{ className: "md:flex-col" }}
+              headerProps={{
+                className:
+                  "border-blue_gray-50 border border-solid bg-gray-50_01 md:flex-col rounded-lg",
+              }}
               rowDataProps={{ className: "md:flex-col" }}
               columns={table1Columns}
               data={table1Data}
@@ -275,7 +297,11 @@ export default function RidesPage() {
             <div className="flex flex-col items-end gap-7">
               <div className="h-px w-full self-stretch bg-blue_gray-50" />
               <div className="flex items-center">
-                <Text size="xl" as="p" className="self-start !text-blue_gray-900_03">
+                <Text
+                  size="xl"
+                  as="p"
+                  className="self-start !text-blue_gray-900_03"
+                >
                   1-2 of items
                 </Text>
                 <Button className="ml-4 flex h-[27px] w-[26px] items-center justify-center rounded-[3px] border border-solid border-blue_gray-50 p-[9px]">
